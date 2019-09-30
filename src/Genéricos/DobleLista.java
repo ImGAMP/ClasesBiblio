@@ -6,9 +6,9 @@ package Genéricos;
         DobleNodo head = null;
         DobleNodo tail = null;
         
-    public void PushFront (int key){
+    public void PushFront (T key){
         
-        DobleNodo<Integer> list1 = new DobleNodo<Integer>(key);
+        DobleNodo<T> list1 = new DobleNodo<T>(key);
         if(this.head == null){
             this.tail = list1;
             this.head = tail;
@@ -23,8 +23,8 @@ package Genéricos;
         }
         
     }
-    public void PushBack (int key){
-        DobleNodo<Integer> nodo2 = new DobleNodo<Integer>(key);
+    public void PushBack (T key){
+        DobleNodo<T> nodo2 = new DobleNodo<T>(key);
         nodo2.setNext(null);
         tail = nodo2.getPrev();
         if(this.head == null){
@@ -47,7 +47,7 @@ package Genéricos;
         }
         return dn;
     }
-    public void PopBak(){
+    public void PopBack(){
         
         if(this.head == null){
             System.out.println("Error! Empty List");
@@ -56,9 +56,63 @@ package Genéricos;
             this.tail = null;
             this.head = tail;
         }else{
-            
+            this.tail = this.tail.getPrev();
             this.tail.setNext(null);
+            
         }    
+    }
+    public void DisplayList(){
+        if(this.head == null){
+            System.out.print("Lista Vacia");
+        }
+        DobleNodo p = this.head;
+        while ( p!= null){
+            System.out.print(p.getKey());
+            p = p.getNext();
+        }
+    }
+    public void PopFront(T key){
+        if(this.head == null){
+            System.out.println("Error! Empty List");
+        }if( this.head == this.tail){
+            this.head = null;
+            this.tail = head;
+        }else{
+            this.head = this.head.getNext();
+            this.head.setPrev(null);
+            
+        } 
+        
+    }
+    public boolean TopFront(){
+        return this.head == null && this.tail == null;
+    }
+    public void AddBefore(DobleNodo nodo, T key){
+         DobleNodo nodo2 = new DobleNodo(key);
+         nodo2.setNext(nodo);
+         nodo2.setPrev(nodo.getPrev());
+         nodo.setPrev(nodo2);
+         if(nodo2.getPrev() !=null){
+             nodo2.setNext(nodo2);
+             nodo2.setPrev(nodo2);
+         }if(this.head == nodo){
+             this.head = nodo2;
+             nodo.setPrev(nodo2);
+             nodo2.setNext(nodo);
+             nodo2.setPrev(head);
+         }
+    }
+    public void AddAfter(DobleNodo nodo, T key){
+        DobleNodo nodo2 = new DobleNodo(key);
+         nodo2.setNext(nodo.getNext());
+         nodo2.setPrev(nodo);
+         nodo.setNext(nodo2);
+         if(nodo2.getNext() !=null){
+             nodo2.setNext(nodo2);
+             nodo2.setPrev(nodo2);
+         }if(this.tail == nodo){
+             this.tail = nodo2;
+         }
     }
     
 };    

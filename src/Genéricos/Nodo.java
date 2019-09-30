@@ -1,4 +1,4 @@
-package ed.pkg18;
+package Genéricos;
 
     public class Nodo<T> {
 

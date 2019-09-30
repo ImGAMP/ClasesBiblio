@@ -11,6 +11,9 @@ import Data.Libro;
 import Data.Revista;
 import Data.Articulo;
 import java.util.ArrayList;
+import Genéricos.Queue;
+import Genéricos.DobleNodo;
+
 /**
  *
  * @author usuario
@@ -21,9 +24,12 @@ public class Functions {
       if((Nic == "")||(Pas == "")){return true;}
       else {return false; }
     }
-    public void Reservar(int IDU, String IDL){
-    
+    public void Reservar(int IDU, String IDL, Queue r){
+        DobleNodo res = new DobleNodo(IDU+IDL,null,null);
+        r.enQueue(res);
     }
+    
+    
     public void Registrar (String Nickname, String Nombre, String Email, String Contraseña, int NumPrestamos, ArrayList Historial){
 
         String lec;
@@ -42,9 +48,10 @@ public class Functions {
             String Id = "aa"+i;
             int Is = (2*i+3)/i;
             String lib =Var("lib",i);
-            Libro lib = new Libro(null,"Cangrejo",i,Id,"Fisica para Todos",Is,"Hugh Young",2004,true,null,null);
+            //Libro lib = new Libro(null,"Cangrejo",i,Id,"Fisica para Todos",Is,"Hugh Young",2004,true,null,null);
         }
     }
+    
     public void Llenar10k (){
     //    public Lector(int NumPrestamos, String Nickname, String Nombre, String Email, String Contraseña) {
 
